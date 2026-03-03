@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -33,4 +34,9 @@ public class Challenge {
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "creator")
     private User user;
+
+    //enrollment table
+    //not repository JPA
+    @OneToMany(mappedBy = "challenge", fetch = FetchType.LAZY)
+    private List<Inscription> inscription;
 }
