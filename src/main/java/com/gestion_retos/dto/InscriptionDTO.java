@@ -1,22 +1,22 @@
 package com.gestion_retos.dto;
 
-import com.gestion_retos.model.Challenge;
-import com.gestion_retos.model.User;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Data
+@Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class InscriptionDTO {
     private Long inscriptionId;
     private LocalDate inscriptionDate;
     private boolean completed;
-
-    //Challenge
+    //User
     private Long userId;
+    //Challenge
     private Long challengeId;
 }

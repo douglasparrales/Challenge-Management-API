@@ -1,18 +1,20 @@
 package com.gestion_retos.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDate;
+
+@Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDTO {
     private Long userId;
     private String username;
     private String email;
-    private String password;
-    private String totalPoints;
-    private String dateRegister;
-
+    private Integer totalPoints;
+    private LocalDate dateRegister;
 }

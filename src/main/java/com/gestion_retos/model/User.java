@@ -28,7 +28,7 @@ public class User {
     private String password;
 
     @Column(name = "total_points")
-    private String totalPoints;
+    private Integer totalPoints;
 
     @Column(name = "registration_date")
     private LocalDate registrationDate;
