@@ -2,37 +2,34 @@ package com.gestion_retos.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.List;
+import java.time.LocalDate;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Entity
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id_usuario")
-    private Long idUsuario;
+    @Column(name = "user_id")
+    private Long userId;
 
     @Column(unique = true)
     private String username;
+
     private String email;
     private String password;
 
-    @Column(name = "puntos_totales")
-    private String puntosTotales;
+    @Column(name = "total_points")
+    private String totalPoints;
 
-    @Column(name = "fecha_registro")
-    private String fechaRegistro;
-
-    @OneToMany(targetEntity = Reto.class, mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Reto> retos;
-
-    @OneToMany(targetEntity = Inscripcion.class, mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Inscripcion> inscripciones;
+    @Column(name = "registration_date")
+    private LocalDate registrationDate;
 }
