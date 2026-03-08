@@ -15,12 +15,6 @@ public interface ChallengeService {
     //create
     ChallengeResponseDTO createChallenge(ChallengeRequestDTO challengeDto);
 
-    //createInscription
-    void createInscription(Long challengeId, Long userId);
-
-    //completeChallenge
-    void completeChallenge(Long challengeId, Long userId);
-
     //update
     ChallengeResponseDTO updateChallenge(Long id, ChallengeRequestDTO challengeDto);
 

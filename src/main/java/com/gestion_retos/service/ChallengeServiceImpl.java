@@ -2,45 +2,72 @@ package com.gestion_retos.service;
 
 import com.gestion_retos.dto.challenge.ChallengeRequestDTO;
 import com.gestion_retos.dto.challenge.ChallengeResponseDTO;
+import com.gestion_retos.exception.ResourceNotFoundException;
+import com.gestion_retos.mapper.ChallengeMapper;
+import com.gestion_retos.model.Challenge;
+import com.gestion_retos.model.User;
+import com.gestion_retos.repository.ChallengeRepository;
+import com.gestion_retos.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
 public class ChallengeServiceImpl implements ChallengeService {
 
+    @Autowired
+    private ChallengeRepository repo;
+    private ChallengeMapper mapper;
+    private UserRepository userRepo;
+
     @Override
     public List<ChallengeResponseDTO> getAllChallenges() {
-        return List.of();
+        //1. find all | 2. sort by end date before actual date | 3. to dto | 4. to list
+        return repo.findByEndDateAfter(LocalDate.now())
+                .stream().map(mapper::toResponseDto)
+                .toList();
     }
 
     @Override
     public ChallengeResponseDTO getChallengeByID(Long id) {
-        return null;
+        //1. exist | 2. find by id | 3. to dto
+        Challenge challenge = repo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("id: "+id+" not exist"));
+        return mapper.toResponseDto(challenge);
     }
 
     @Override
     public ChallengeResponseDTO createChallenge(ChallengeRequestDTO challengeDto) {
-        return null;
-    }
-
-    @Override
-    public void createInscription(Long challengeId, Long userId) {
-
-    }
-
-    @Override
-    public void completeChallenge(Long challengeId, Long userId) {
-
+        Challenge challenge = mapper.toEntity(challengeDto);
+        Challenge savedChallenge = repo.save(challenge);
+        return mapper.toResponseDto(savedChallenge);
     }
 
     @Override
     public ChallengeResponseDTO updateChallenge(Long id, ChallengeRequestDTO challengeDto) {
-        return null;
+        Challenge challenge = repo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("id: "+id+" not exist"));
+
+        User user = userRepo.findById(challengeDto.getCreatorId())
+                        .orElseThrow(() -> new ResourceNotFoundException("creator not found"));
+
+        challenge.setTitle(challengeDto.getTitle());
+        challenge.setDescription(challengeDto.getDescription());
+        challenge.setPoints(challengeDto.getPoints());
+        challenge.setEndDate(challengeDto.getEndDate());
+        challenge.setStartDate(challengeDto.getStartDate());
+        challenge.setUser(user);
+
+        Challenge savedChallenge = repo.save(challenge);
+        return mapper.toResponseDto(savedChallenge);
     }
 
     @Override
     public void deleteChallenge(Long id) {
-
+        Challenge challenge = repo.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("id: "+id+" not exist"));
+        repo.delete(challenge);
     }
 }
