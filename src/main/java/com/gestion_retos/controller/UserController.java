@@ -1,0 +1,51 @@
+package com.gestion_retos.controller;
+
+import com.gestion_retos.dto.user.UserRequestDTO;
+import com.gestion_retos.dto.user.UserResponseDTO;
+import com.gestion_retos.service.UserService;
+import org.jspecify.annotations.NonNull;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.net.URI;
+import java.util.List;
+
+@RestController
+@RequestMapping("/user")
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    @GetMapping
+    public ResponseEntity<@NonNull List<UserResponseDTO>> getAllUsersByRanking(){
+        List<UserResponseDTO> userResponseDTO = userService.getAllUsersByRanking();
+        return ResponseEntity.ok(userResponseDTO);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<@NonNull UserResponseDTO> getById(@PathVariable Long id){
+        UserResponseDTO userResponseDTO = userService.getUserById(id);
+        return ResponseEntity.ok(userResponseDTO);
+    }
+
+    @PostMapping
+    public ResponseEntity<@NonNull UserResponseDTO> createUser(@RequestBody UserRequestDTO userRequestDTO){
+        UserResponseDTO userResponseDTO = userService.createUser(userRequestDTO);
+        return ResponseEntity.created(URI.create("/system/api/v1/user")).body(userResponseDTO);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<@NonNull UserResponseDTO> updateUser(@PathVariable Long id, @RequestBody UserRequestDTO userRequestDTO){
+        UserResponseDTO userResponseDTO = userService.updateUser(id, userRequestDTO);
+        return ResponseEntity.ok(userResponseDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<@NonNull UserResponseDTO> deleteUser(@PathVariable Long id){
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
+    }
+
+}
