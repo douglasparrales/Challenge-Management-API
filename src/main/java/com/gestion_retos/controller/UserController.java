@@ -20,8 +20,8 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<@NonNull List<UserResponseDTO>> getAllUsersByRanking(){
-        List<UserResponseDTO> userResponseDTO = userService.getAllUsersByRanking();
-        return ResponseEntity.ok(userResponseDTO);
+        List<UserResponseDTO> users = userService.getAllUsersByRanking();
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping("/{id}")
@@ -33,7 +33,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<@NonNull UserResponseDTO> createUser(@RequestBody UserRequestDTO userRequestDTO){
         UserResponseDTO userResponseDTO = userService.createUser(userRequestDTO);
-        return ResponseEntity.created(URI.create("/system/api/v1/user")).body(userResponseDTO);
+        return ResponseEntity.created(URI.create("/system/api/v1/user/"+ userResponseDTO.getUserId())).body(userResponseDTO);
     }
 
     @PutMapping("/{id}")
@@ -43,9 +43,8 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<@NonNull UserResponseDTO> deleteUser(@PathVariable Long id){
+    public ResponseEntity<@NonNull Void> deleteUser(@PathVariable Long id){
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
-
 }

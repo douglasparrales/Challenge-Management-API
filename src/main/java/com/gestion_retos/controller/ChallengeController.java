@@ -6,7 +6,6 @@ import com.gestion_retos.service.ChallengeService;
 import com.gestion_retos.service.InscriptionService;
 import lombok.AllArgsConstructor;
 import org.jspecify.annotations.NonNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +22,8 @@ public class ChallengeController {
 
     @GetMapping
     public ResponseEntity<@NonNull List<ChallengeResponseDTO>> getAllChallenges(){
-        List<ChallengeResponseDTO> challengeResponseDTO = challengeService.getAllChallenges();
-        return ResponseEntity.ok(challengeResponseDTO);
+        List<ChallengeResponseDTO> challenges = challengeService.getAllChallenges();
+        return ResponseEntity.ok(challenges);
     }
 
     @GetMapping("/{id}")
@@ -36,13 +35,13 @@ public class ChallengeController {
     @PostMapping
     public ResponseEntity<@NonNull ChallengeResponseDTO> createChallenge(@RequestBody ChallengeRequestDTO challengeRequestDTO){
         ChallengeResponseDTO challengeResponseDTO = challengeService.createChallenge(challengeRequestDTO);
-        return ResponseEntity.created(URI.create("/system/api/v1/challenge")).body(challengeResponseDTO);
+        return ResponseEntity.created(URI.create("/system/api/v1/challenge/"+challengeResponseDTO.getChallengeId())).body(challengeResponseDTO);
     }
 
-    @PostMapping("/{id}/inscription/{userId}")
-    public ResponseEntity<?> createInscription(@PathVariable Long id, @PathVariable Long userId){
-        inscriptionService.createInscription(id, userId);
-        return ResponseEntity.created(URI.create("/system/api/v1/challenge/"+id+"/inscription/"+userId)).build();
+    @PostMapping("/{challengeId}/inscription/{userId}")
+    public ResponseEntity<@NonNull Void> createInscription(@PathVariable Long challengeId, @PathVariable Long userId){
+        inscriptionService.createInscription(challengeId, userId);
+        return ResponseEntity.created(URI.create("/system/api/v1/challenge/"+challengeId+"/inscription/"+userId)).build();
     }
 
     @PutMapping("/{id}")
@@ -51,16 +50,15 @@ public class ChallengeController {
         return ResponseEntity.ok(challengeResponseDTO);
     }
 
-    @PutMapping("/{id}/complete/{userId}")
-    public ResponseEntity<@NonNull ChallengeResponseDTO> completeChallenge(@PathVariable Long id, @PathVariable Long userId){
-        inscriptionService.completeChallenge(id, userId);
+    @PutMapping("/{challengeId}/complete/{userId}")
+    public ResponseEntity<@NonNull Void> completeChallenge(@PathVariable Long challengeId, @PathVariable Long userId){
+        inscriptionService.completeChallenge(challengeId, userId);
         return ResponseEntity.ok().build()  ;
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<@NonNull ChallengeResponseDTO> deleteChallenge(@PathVariable Long id){
+    public ResponseEntity<@NonNull Void> deleteChallenge(@PathVariable Long id){
         challengeService.deleteChallenge(id);
         return ResponseEntity.noContent().build();
     }
-
 }

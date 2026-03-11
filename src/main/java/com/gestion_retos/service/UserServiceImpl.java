@@ -6,17 +6,19 @@ import com.gestion_retos.exception.ResourceNotFoundException;
 import com.gestion_retos.mapper.UserMapper;
 import com.gestion_retos.model.User;
 import com.gestion_retos.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UserRepository repo;
+    private final UserRepository repo;
 
     @Override
     public List<UserResponseDTO> getAllUsersByRanking() {
