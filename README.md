@@ -35,7 +35,6 @@ Practicar conceptos clave del desarrollo backend:
 
 El proyecto sigue una arquitectura típica de aplicaciones backend.
 
-```
 
 Controller
 ↓
@@ -45,7 +44,6 @@ Repository
 ↓
 Database
 
-```
 
 ## Capas del proyecto
 
@@ -72,8 +70,6 @@ Database
 
 ## Usuario
 
-```
-
 Usuario
 
 * id
@@ -83,11 +79,9 @@ Usuario
 * puntosTotales
 * fechaRegistro
 
-```
 
 ## Reto
 
-```
 
 Reto
 
@@ -99,11 +93,9 @@ Reto
 * fechaFin
 * creador
 
-```
 
 ## Inscripción
 
-```
 
 Inscripcion
 
@@ -113,11 +105,9 @@ Inscripcion
 * fechaInscripcion
 * completado
 
-```
 
 Relaciones implementadas usando **Hibernate** y **Spring Data JPA**.
 
----
 
 # 🌐 Endpoints
 
@@ -161,7 +151,6 @@ Relaciones implementadas usando **Hibernate** y **Spring Data JPA**.
 
 # 📦 Estructura del proyecto
 
-```
 
 src
 └─ main
@@ -176,7 +165,6 @@ src
 ├─ mapper
 └─ payload
 
-```
 
 ---
 
@@ -184,35 +172,27 @@ src
 
 ### 1️⃣ Clonar repositorio
 
-```
 
 git clone [https://github.com/tu-usuario/tu-repositorio.git](https://github.com/tu-usuario/tu-repositorio.git)
 
-```
 
 ### 2️⃣ Entrar al proyecto
 
-```
 
 cd tu-repositorio
 
-```
 
 ### 3️⃣ Ejecutar la aplicación
 
-```
 
 mvn spring-boot:run
 
-```
 
 La API se ejecutará en:
 
-```
 
 [http://localhost:8080](http://localhost:8080)
 
-````
 
 ---
 
@@ -222,13 +202,12 @@ La API se ejecutará en:
 
 **POST /usuarios**
 
-```json
+json
 {
   "username": "juan123",
   "email": "juan@email.com",
   "password": "123456"
 }
-````
 
 ---
 
