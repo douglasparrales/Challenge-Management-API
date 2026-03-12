@@ -23,8 +23,6 @@ API REST robusta desarrollada con **Spring Boot** para la gestión de retos inte
 
 ## 🧠 Objetivos Técnicos Alcanzados
 
-Para este desarrollo, me enfoqué en implementar conceptos clave de un entorno backend profesional:
-
 1.  **Diseño de API RESTful:** Uso correcto de verbos HTTP y códigos de estado.
 2.  **Arquitectura por Capas:** Separación estricta de responsabilidades (Controller, Service, Repository).
 3.  **Modelado de Relaciones:** Implementación de relaciones `@ManyToOne` y `@ManyToMany` con JPA.
@@ -54,6 +52,9 @@ El proyecto sigue un flujo de datos unidireccional para garantizar la mantenibil
 * **Inscripción:** Entidad intermedia que registra el estado del progreso del usuario en un reto específico.
 
 ---
+
+## 🗺️ Diagrama de Entidad-Relación (ERD)
+![diagrama ERD](./src/main/resources/ERD%20Gestion_de_Retos.png)
 
 ## 🌐 Endpoints Principales
 
