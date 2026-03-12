@@ -112,7 +112,7 @@ El proyecto sigue un flujo de datos unidireccional para garantizar la mantenibil
 
 ---
 
-## 🔮 Roadmap y Próximas Mejoras
+## 🔮 Próximas Mejoras
 
 * [ ] Implementar seguridad con **Spring Security & JWT**.
 * [ ] Documentación interactiva con **Swagger / OpenAPI**.
@@ -120,7 +120,3 @@ El proyecto sigue un flujo de datos unidireccional para garantizar la mantenibil
 * [ ] Contenerización con **Docker**.
 * [ ] Paginación y filtros avanzados en la lista de retos.
 
----
-
-## 👨‍💻 Autor
-*Si este proyecto te parece interesante o útil, ¡no dudes en darle una ⭐!*
