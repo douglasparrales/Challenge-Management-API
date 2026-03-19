@@ -1,5 +1,6 @@
 package com.gestion_retos.dto.user;
 
+import jakarta.validation.constraints.Email;
 import lombok.*;
 
 import java.time.LocalDate;
