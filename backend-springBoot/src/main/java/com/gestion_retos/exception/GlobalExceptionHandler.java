@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<@NonNull ErrorResponse> handleResourceNotFound(ResourceNotFoundException ex){
 
         ErrorResponse error = new ErrorResponse(
-                "Resource not found :(",
+                "Resource not found :( ",
                 HttpStatus.NOT_FOUND.value(),
                 LocalDate.now(),
                 null
@@ -72,6 +72,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
+    /*
     @ExceptionHandler(Exception.class)
     public ResponseEntity<@NonNull ErrorResponse> handleGeneral(Exception ex){
         ErrorResponse error = new ErrorResponse(
@@ -82,4 +83,6 @@ public class GlobalExceptionHandler {
         );
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
     }
+
+     */
 }
