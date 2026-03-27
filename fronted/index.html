@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RetoPro | Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-content">
+    <div class="logo">🏆 Reto<span>Pro</span></div>
+    
+    <div class="nav-actions">
+      <button class="btn-ghost" onclick="toggleModal('user-modal')">
+        <i data-lucide="users"></i> Usuarios
+      </button>
+      <button class="btn-primary" onclick="toggleModal('challenge-modal')">
+        <i data-lucide="plus"></i> Nuevo Reto
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main class="main-layout">
+  <section class="challenges-column">
+    <div class="section-header">
+      <h2>Retos Disponibles</h2>
+      <p>Selecciona un reto para ver detalles e inscritos</p>
+    </div>
+    <div id="challenges-list" class="grid-challenges">
+      </div>
+  </section>
+
+  <aside class="details-column" id="details-panel">
+    <div id="empty-state" class="empty-state">
+      <i data-lucide="mouse-pointer-2"></i>
+      <p>Selecciona un reto de la lista para ver quién está participando</p>
+    </div>
+    
+    <div id="challenge-detail-content" style="display: none;">
+      <div class="detail-header">
+        <h2 id="selected-title">Título del Reto</h2>
+        <span id="selected-points" class="points-badge">0 pts</span>
+      </div>
+      
+      <div class="inscription-box">
+        <h4>Inscribirse ahora</h4>
+        <div class="inline-form">
+          <input type="number" id="quick-user-id" placeholder="Tu ID de usuario">
+          <button class="btn-success" onclick="inscribirseRapido()">Unirse</button>
+        </div>
+      </div>
+
+      <div class="participants-section">
+        <h3><i data-lucide="users"></i> Participantes Inscritos</h3>
+        <div id="participants-list" class="participants-list">
+          </div>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<div id="user-modal" class="modal">
+    <div class="modal-content">
+      <h3>Crear Nuevo Usuario</h3>
+      <div class="form-vertical">
+        <input id="username" placeholder="Nombre de usuario">
+        <input id="email" type="email" placeholder="Correo electrónico">
+        <input id="password" type="password" placeholder="Contraseña">
+        <div class="modal-footer">
+          <button class="btn-ghost" onclick="toggleModal('user-modal')">Cerrar</button>
+          <button class="btn-primary" onclick="createUser()">Guardar</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div id="challenge-modal" class="modal">
+    <div class="modal-content">
+      <h3>Nuevo Reto</h3>
+      <div class="form-vertical">
+        <input id="title" placeholder="Título">
+        <textarea id="description" placeholder="Descripción"></textarea>
+        <input id="points" type="number" placeholder="Puntos">
+        <input id="startDate" type="date">
+        <input id="endDate" type="date">
+        <input id="creatorId" placeholder="ID del Creador">
+        <div class="modal-footer">
+          <button class="btn-ghost" onclick="toggleModal('challenge-modal')">Cancelar</button>
+          <button class="btn-primary" onclick="createChallenge()">Publicar</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

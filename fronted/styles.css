@@ -1,0 +1,219 @@
+:root {
+  --primary: #2563eb;
+  --success: #10b981;
+  --bg: #f1f5f9;
+  --card: #ffffff;
+  --text: #0f172a;
+  --border: #e2e8f0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg);
+  margin: 0;
+  color: var(--text);
+}
+
+/* Layout Principal */
+.main-layout {
+  display: grid;
+  grid-template-columns: 1fr 400px; /* Columna de retos y columna fija de detalles */
+  height: calc(100vh - 70px);
+  overflow: hidden;
+}
+
+.challenges-column {
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.details-column {
+  background: var(--card);
+  border-left: 1px solid var(--border);
+  padding: 2rem;
+  overflow-y: auto;
+  box-shadow: -4px 0 15px rgba(0,0,0,0.02);
+}
+
+/* Navbar Corregida */
+.navbar {
+  height: 80px; /* Un poco más de altura para que respire */
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  box-sizing: border-box; /* Importante para que el padding no rompa el diseño */
+}
+
+.nav-content {
+  width: 100%;
+  max-width: 1400px; /* Para que no se pegue a los bordes en pantallas gigantes */
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.5rem; /* Corregido: font-size con guion */
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 12px; /* Espacio exacto entre botones */
+  align-items: center;
+}
+
+/* Ajuste de botones para que se vean uniformes */
+.btn-primary, .btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem; /* Corregido: font-size con guion */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap; /* Evita que el texto se rompa en dos líneas */
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--secondary);
+  border: 1px solid var(--border);
+}
+
+.btn-ghost:hover {
+  background: #f8fafc;
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Iconos de Lucide */
+.nav-actions i {
+  width: 18px;
+  height: 18px;
+}
+
+/* Cards */
+.grid-challenges {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.challenge-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.challenge-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.challenge-card.selected {
+  border: 2px solid var(--primary);
+  background: #eff6ff;
+}
+
+/* Detalle del Reto (Derecha) */
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.points-badge {
+  background: #dcfce7;
+  color: #166534;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.inscription-box {
+  background: #f8fafc;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.inline-form {
+  display: flex;
+  gap: 8px;
+}
+
+.participants-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+/* Modales y otros */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  width: 400px;
+}
+
+.form-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.btn-primary { background: var(--primary); color: white; border: none; padding: 10px 18px; border-radius: 8px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 5px; }
+.btn-success { background: var(--success); color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; }
+.btn-ghost { background: transparent; border: 1px solid var(--border); padding: 10px; border-radius: 8px; cursor: pointer; }
+
+.toast {
+  position: fixed; bottom: 20px; right: 20px;
+  background: #1e293b; color: white; padding: 1rem;
+  border-radius: 8px; display: none;
+}
