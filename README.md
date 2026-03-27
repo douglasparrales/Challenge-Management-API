@@ -54,7 +54,7 @@ The project follows a unidirectional data flow to ensure maintainability:
 ---
 
 ## 🗺️ Entity-Relationship Diagram (ERD)
-![ERD Diagram](./src/main/resources/ERD%20Gestion_de_Retos.png)
+![ERD Diagram](./backend-springBoot/src/main/resources/ERD%20Gestion_de_Retos.png)
 
 ---
 
