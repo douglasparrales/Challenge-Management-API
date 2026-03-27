@@ -1,6 +1,8 @@
 package com.gestion_retos.service;
 
+import com.gestion_retos.dto.user.UserResponseDTO;
 import com.gestion_retos.exception.ResourceNotFoundException;
+import com.gestion_retos.mapper.UserMapper;
 import com.gestion_retos.model.Challenge;
 import com.gestion_retos.model.Inscription;
 import com.gestion_retos.model.User;
@@ -12,6 +14,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @AllArgsConstructor
 @Service
@@ -22,6 +25,32 @@ public class InscriptionServiceImpl implements InscriptionService{
     private final UserRepository userRepo;
     private final ChallengeRepository challengeRepo;
 
+
+    @Override
+    public List<UserResponseDTO> getUsersByChallenge(Long challengeId) {
+        // exist challenge
+        Challenge challenge = challengeRepo.findById(challengeId)
+                .orElseThrow(() -> new ResourceNotFoundException("id " + challengeId + " not found"));
+
+        // get enrollment
+        List<Inscription> inscriptions = repo.findByChallenge_ChallengeId(challengeId);
+
+        // mapper to dto
+        return inscriptions.stream()
+                .map(inscription -> {
+                    User user = inscription.getUser();
+
+                    UserResponseDTO dto = new UserResponseDTO();
+                    dto.setUserId(user.getUserId());
+                    dto.setUsername(user.getUsername());
+                    dto.setEmail(user.getEmail());
+                    dto.setTotalPoints(user.getTotalPoints());
+                    dto.setRegistrationDate(user.getRegistrationDate());
+
+                    return dto;
+                })
+                .toList();
+    }
 
     @Override
     public void createInscription(Long challengeId, Long userId) {

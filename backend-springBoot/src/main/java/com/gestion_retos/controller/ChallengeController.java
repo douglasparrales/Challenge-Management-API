@@ -2,6 +2,7 @@ package com.gestion_retos.controller;
 
 import com.gestion_retos.dto.challenge.ChallengeRequestDTO;
 import com.gestion_retos.dto.challenge.ChallengeResponseDTO;
+import com.gestion_retos.dto.user.UserResponseDTO;
 import com.gestion_retos.service.ChallengeService;
 import com.gestion_retos.service.InscriptionService;
 import jakarta.validation.Valid;
@@ -62,5 +63,10 @@ public class ChallengeController {
     public ResponseEntity<@NonNull Void> deleteChallenge(@PathVariable Long id){
         challengeService.deleteChallenge(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{challengeId}/user")
+    public ResponseEntity<@NonNull List<UserResponseDTO>> getUsersByChallenge(@PathVariable Long challengeId) {
+        return ResponseEntity.ok(inscriptionService.getUsersByChallenge(challengeId));
     }
 }
