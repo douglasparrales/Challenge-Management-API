@@ -47,16 +47,17 @@ public class ChallengeServiceImpl implements ChallengeService {
         LocalDate endDate= challengeDto.getEndDate();
         LocalDate startDate = challengeDto.getStartDate();
 
-        if(startDate.isAfter(endDate)){
-            throw  new IllegalStateException("Start date must be before end date");
-        }
-
-        if (endDate.isBefore(today)){
-            throw new IllegalStateException("End date cannot be in the past");
-        }
-
         if (startDate.isBefore(today)) {
             throw new IllegalStateException("Start date cannot be in the past");
+        }
+
+        if (endDate != null){
+            if (endDate.isBefore(today)){
+                throw new IllegalStateException("End date cannot be in the past");
+            }
+            if(startDate.isAfter(endDate)){
+                throw  new IllegalStateException("Start date must be before end date");
+            }
         }
 
         User user = userRepo.findById(challengeDto.getCreatorId())

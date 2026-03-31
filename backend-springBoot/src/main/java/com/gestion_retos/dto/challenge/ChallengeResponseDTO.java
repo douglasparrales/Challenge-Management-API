@@ -1,5 +1,6 @@
 package com.gestion_retos.dto.challenge;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import java.time.LocalDate;
