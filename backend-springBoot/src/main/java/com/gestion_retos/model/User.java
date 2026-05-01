@@ -2,7 +2,6 @@ package com.gestion_retos.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.DialectOverride;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
